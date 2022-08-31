@@ -2,8 +2,3 @@
 [user]
 	name = Simon Stipcich
 	email = stipcich.simon@gmail.com 
-# [credential]
-	#helper = wincred
-#[http]
-#	sslCAInfo = C:\\ProgramData\\Netskope\\STAgent\\download\\nscacert.pem
-#	schannelCheckRevoke = false
