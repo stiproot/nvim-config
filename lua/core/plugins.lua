@@ -201,11 +201,11 @@ local astro_plugins = {
   },
 
   -- Start screen
-  ["goolord/alpha-nvim"] = {
-    cmd = "Alpha",
-    module = "alpha",
-    config = function() require "configs.alpha" end,
-  },
+  -- ["goolord/alpha-nvim"] = {
+    -- cmd = "Alpha",
+    -- module = "alpha",
+    -- config = function() require "configs.alpha" end,
+  -- },
 
   -- Color highlighting
   ["NvChad/nvim-colorizer.lua"] = {
@@ -252,10 +252,10 @@ local astro_plugins = {
   },
 
   -- Smooth escaping
-  ["max397574/better-escape.nvim"] = {
-    event = "InsertCharPre",
-    config = function() require "configs.better_escape" end,
-  },
+  -- ["max397574/better-escape.nvim"] = {
+    -- event = "InsertCharPre",
+    -- config = function() require "configs.better_escape" end,
+  -- },
 
   -- Get extra JSON schemas
   ["b0o/SchemaStore.nvim"] = { module = "schemastore" },
