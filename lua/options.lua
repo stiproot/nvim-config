@@ -5,3 +5,4 @@ opt.wildignore:append { "*/node_modules/*", "*/dist/*", "*/.git/*" }
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true -- Use spaces instead of tabs
+opt.relativenumber = true
