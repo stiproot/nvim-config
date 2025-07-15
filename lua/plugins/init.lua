@@ -58,5 +58,122 @@ return {
     config = function()
       require "config.lspconfig"
     end,
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = "VeryLazy",
+    config = function()
+      -- Load rainbow delimiters with a better strategy than the default
+      local rainbow_delimiters = require("rainbow-delimiters")
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [""] = rainbow_delimiters.strategy["global"],
+          vim = rainbow_delimiters.strategy["local"],
+        },
+        query = {
+          [""] = "rainbow-delimiters",
+          lua = "rainbow-blocks",
+          javascript = "rainbow-delimiters-react",
+          tsx = "rainbow-parens",
+        },
+        highlight = {
+          "RainbowDelimiterRed",
+          "RainbowDelimiterYellow",
+          "RainbowDelimiterBlue",
+          "RainbowDelimiterOrange",
+          "RainbowDelimiterGreen",
+          "RainbowDelimiterViolet",
+          "RainbowDelimiterCyan",
+        },
+        blacklist = { "html" }, -- Disable for HTML (often looks busy)
+      }
+
+      -- patch https://github.com/nvim-treesitter/nvim-treesitter/issues/1124
+      if vim.fn.expand("%:p") ~= "" then
+        vim.cmd.edit({ bang = true })
+      end
+    end,
   }
 }
+
+
+-- Add these plugins to your return table in lua/plugins/init.lua
+-- {
+--   "mfussenegger/nvim-dap",
+--   dependencies = {
+--     "rcarriga/nvim-dap-ui",
+--     "theHamsta/nvim-dap-virtual-text",
+--     "nvim-neotest/nvim-nio"
+--   },
+--   config = function()
+--     local dap = require("dap")
+--     local dapui = require("dapui")
+    
+--     -- Setup DAP UI
+--     dapui.setup()
+    
+--     -- Setup virtual text
+--     require("nvim-dap-virtual-text").setup()
+    
+--     -- Configure .NET debugger
+--     dap.adapters.coreclr = {
+--       type = 'executable',
+--       command = '/path/to/netcoredbg', -- You'll need to install netcoredbg
+--       args = {'--interpreter=vscode'}
+--     }
+    
+--     dap.configurations.cs = {
+--       {
+--         type = "coreclr",
+--         name = "launch - netcoredbg",
+--         request = "launch",
+--         program = function()
+--           return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+--         end,
+--       },
+--     }
+    
+--     -- Auto open/close DAP UI
+--     dap.listeners.after.event_initialized["dapui_config"] = function()
+--       dapui.open()
+--     end
+--     dap.listeners.before.event_terminated["dapui_config"] = function()
+--       dapui.close()
+--     end
+--     dap.listeners.before.event_exited["dapui_config"] = function()
+--       dapui.close()
+--     end
+--   end,
+-- },
+-- {
+--   "nvim-neotest/neotest",
+--   dependencies = {
+--     "nvim-neotest/nvim-nio",
+--     "nvim-lua/plenary.nvim",
+--     "antoinemadec/FixCursorHold.nvim",
+--     "nvim-treesitter/nvim-treesitter",
+--     "Issafalcon/neotest-dotnet"
+--   },
+--   config = function()
+--     require("neotest").setup({
+--       adapters = {
+--         require("neotest-dotnet")
+--       }
+--     })
+--   end,
+-- }
