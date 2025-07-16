@@ -1,12 +1,14 @@
 local git = require("utils.git")
 
 return {
+
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "config.lspconfig"
     end,
   },
+
   {
   	"nvim-treesitter/nvim-treesitter",
   	opts = {
@@ -16,8 +18,11 @@ return {
   		},
   	},
   },
+
   { "github/copilot.vim", lazy = false },
+
   { "tpope/vim-vinegar", lazy = false },
+
   {
     "greggh/claude-code.nvim",
     lazy = false,
@@ -31,14 +36,14 @@ return {
           height_ratio = 0.5, -- Percentage of screen height for the terminal window
           position = "botright", -- Position of the window: "botright", "topleft", etc.
           enter_insert = true, -- Whether to enter insert mode when opening Claude Code
-          hide_numbers = true, -- Hide line numbers in the terminal window
-          hide_signcolumn = true, -- Hide the sign column in the terminal window
+          hide_numbers = false, -- Hide line numbers in the terminal window
+          hide_signcolumn = false, -- Hide the sign column in the terminal window
         },
         -- File refresh settings
         refresh = {
           enable = true, -- Enable file change detection
           updatetime = 100, -- updatetime when Claude Code is active (milliseconds)
-          timer_interval = 1000, -- How often to check for file changes (milliseconds)
+
           show_notifications = true, -- Show notification when files are reloaded
         },
         -- Git project settings
@@ -48,19 +53,21 @@ return {
         -- Keymaps
         keymaps = {
           toggle = {
-            normal = "<leader>ac", -- Normal mode keymap for toggling Claude Code
+            normal = "<leader>cc", -- Normal mode keymap for toggling Claude Code
             terminal = "<C-,>", -- Terminal mode keymap for toggling Claude Code
           },
         },
       })
     end,
   },
+
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "config.lspconfig"
     end,
   },
+
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -75,6 +82,7 @@ return {
       },
     },
   },
+
   {
     "HiPhish/rainbow-delimiters.nvim",
     event = "VeryLazy",
@@ -111,6 +119,7 @@ return {
       end
     end,
   },
+
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -219,10 +228,19 @@ return {
             i = {
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
+              ["<C-n>"] = actions.move_selection_next,
+              ["<C-p>"] = actions.move_selection_previous,
               ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
               ["<Esc>"] = actions.close,
               ["<C-u>"] = false,
               ["<C-d>"] = false,
+            },
+            n = {
+              ["j"] = actions.move_selection_next,
+              ["k"] = actions.move_selection_previous,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+              ["q"] = actions.close,
             },
           },
           file_ignore_patterns = {
@@ -284,6 +302,7 @@ return {
       telescope.load_extension("fzf")
     end,
   }
+
 }
 
 
