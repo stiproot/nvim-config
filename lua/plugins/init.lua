@@ -302,9 +302,7 @@ return {
       telescope.load_extension("fzf")
     end,
   }
-
 }
-
 
 -- Add these plugins to your return table in lua/plugins/init.lua
 -- {
@@ -354,6 +352,7 @@ return {
 --     end
 --   end,
 -- },
+
 -- {
 --   "nvim-neotest/neotest",
 --   dependencies = {
