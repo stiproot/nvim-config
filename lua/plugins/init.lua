@@ -120,6 +120,35 @@ return {
     end,
   },
 
+  -- {
+  --   "Mofiqul/vscode.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require('vscode').setup({
+  --       transparent = false,
+  --       italic_comments = true,
+  --       disable_nvimtree_bg = true,
+  --     })
+  --     require('vscode').load()
+  --   end,
+  -- },
+
+  {
+    "stiproot/xo-theme.nvim",
+    dir = "/Users/simon.stipcich/code/repo/xo-theme.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('vscode').setup({
+        transparent = false,
+        italic_comments = true,
+        disable_nvimtree_bg = true,
+      })
+      require('vscode').load()
+    end,
+  },
+
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -301,7 +330,15 @@ return {
       -- Load extensions
       telescope.load_extension("fzf")
     end,
+  },
+
+  {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
   }
+
 }
 
 -- Add these plugins to your return table in lua/plugins/init.lua
