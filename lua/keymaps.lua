@@ -46,3 +46,33 @@ map("n", "<C-l>", "<C-\\><C-n><C-w>l")
 -- map('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 map("n", "<leader>p", "<C-r>=expand('%:p')<CR>")
+
+-- LSP Keybindings (only active when LSP is attached)
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local bufnr = args.buf
+    local opts = { buffer = bufnr, noremap = true, silent = true }
+
+    -- Navigation
+    map("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
+    map("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
+    map("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "Find references" }))
+    map("n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
+
+    -- Documentation
+    map("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
+    map("i", "<C-k>", vim.lsp.buf.signature_help, vim.tbl_extend("force", opts, { desc = "Signature help" }))
+
+    -- Refactoring
+    map("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
+    map("n", "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code actions" }))
+    map("n", "<leader>f", function()
+      vim.lsp.buf.format({ async = true })
+    end, vim.tbl_extend("force", opts, { desc = "Format document" }))
+
+    -- Diagnostics
+    map("n", "[d", vim.diagnostic.goto_prev, vim.tbl_extend("force", opts, { desc = "Previous diagnostic" }))
+    map("n", "]d", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Next diagnostic" }))
+    map("n", "<leader>e", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Show diagnostic" }))
+  end,
+})

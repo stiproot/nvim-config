@@ -9,12 +9,29 @@ return {
     end,
   },
 
+  -- Completion framework
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",  -- Lazy-load on entering insert mode
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",     -- LSP completions
+      "hrsh7th/cmp-buffer",       -- Buffer words
+      "hrsh7th/cmp-path",         -- File paths
+      "L3MON4D3/LuaSnip",         -- Snippet engine
+      "saadparwaiz1/cmp_luasnip", -- Snippet completions
+    },
+    config = function()
+      require("config.cmp")
+    end,
+  },
+
   {
   	"nvim-treesitter/nvim-treesitter",
   	opts = {
   		ensure_installed = {
   		  "vim", "lua", "vimdoc",
-        "html", "css", "c_sharp"
+        "html", "css", "c_sharp",
+        "typescript", "javascript", "tsx", "json"
   		},
   	},
   },
@@ -58,13 +75,6 @@ return {
           },
         },
       })
-    end,
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "config.lspconfig"
     end,
   },
 
