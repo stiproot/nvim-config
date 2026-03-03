@@ -19,7 +19,7 @@ return {
   	},
   },
 
-  { "github/copilot.vim", lazy = false },
+  -- { "github/copilot.vim", lazy = false },
 
   { "tpope/vim-vinegar", lazy = false },
 

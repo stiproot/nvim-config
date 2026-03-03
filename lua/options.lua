@@ -6,6 +6,12 @@ g.maplocalleader = " "
 local opt = vim.opt
 
 opt.wildignore:append { "*/node_modules/*", "*/dist/*", "*/.git/*" }
+
+-- opt.wildignore = opt.wildignore - { ".*", "*/.*" }
+-- opt.path:append("**")
+-- opt.wildignore:remove(".*")
+-- vim.opt.path = { ".", "**" }
+
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true -- Use spaces instead of tabs
