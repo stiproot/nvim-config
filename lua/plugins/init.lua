@@ -349,6 +349,15 @@ return {
     end,
   },
 
+  {
+    "fresh2dev/zellij.vim",
+    lazy = false,
+    config = function()
+      -- Plugin works out of the box with zellij-autolock
+      -- Provides seamless navigation between Neovim and Zellij panes
+    end,
+  },
+
 }
 
 -- Add these plugins to your return table in lua/plugins/init.lua

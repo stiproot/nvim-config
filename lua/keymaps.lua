@@ -17,15 +17,11 @@ map("v", "p", '"_dp')
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- map("n", "<C-h>", "<C-w>h")
--- map("n", "<C-j>", "<C-\\><C-n><C-w>j")
--- map("n", "<C-k>", "<C-\\><C-n><C-w>k")
--- map("n", "<C-l>", "<C-w>l")
-
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-j>", "<C-\\><C-n><C-w>j")
-map("n", "<C-k>", "<C-\\><C-n><C-w>k")
-map("n", "<C-l>", "<C-\\><C-n><C-w>l")
+-- Window navigation (Ctrl + hjkl)
+map("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+map("n", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Move to window below" })
+map("n", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Move to window above" })
+map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Add these debugging keymaps to lua/keymaps.lua
 -- ...existing code...
