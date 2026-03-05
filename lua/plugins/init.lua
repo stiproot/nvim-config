@@ -358,6 +358,16 @@ return {
     end,
   },
 
+  {
+    dir = vim.fn.stdpath("config") .. "/lua/cc-agent",
+    name = "cc-agent",
+    lazy = false,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("cc-agent").setup({})
+    end,
+  },
+
 }
 
 -- Add these plugins to your return table in lua/plugins/init.lua
