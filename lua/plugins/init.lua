@@ -31,7 +31,8 @@ return {
   		ensure_installed = {
   		  "vim", "lua", "vimdoc",
         "html", "css", "c_sharp",
-        "typescript", "javascript", "tsx", "json"
+        "typescript", "javascript", "tsx", "json",
+        "markdown", "markdown_inline"
   		},
   	},
   },
