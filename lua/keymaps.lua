@@ -43,6 +43,13 @@ map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 map("n", "<leader>p", "<C-r>=expand('%:p')<CR>")
 
+-- Git keybindings (vim-fugitive)
+map("n", "<leader>gs", ":Git<CR>", { desc = "Git status" })
+map("n", "<leader>gb", ":Git blame<CR>", { desc = "Git blame" })
+map("n", "<leader>gd", ":Gdiffsplit<CR>", { desc = "Git diff" })
+map("n", "<leader>gl", ":Git log<CR>", { desc = "Git log" })
+map("n", "<leader>gp", ":Git push<CR>", { desc = "Git push" })
+
 -- LSP Keybindings (only active when LSP is attached)
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)

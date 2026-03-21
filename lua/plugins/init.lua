@@ -41,6 +41,12 @@ return {
 
   { "tpope/vim-vinegar", lazy = false },
 
+  -- Git integration
+  {
+    "tpope/vim-fugitive",
+    cmd = { "Git", "G", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse" },
+  },
+
   {
     "greggh/claude-code.nvim",
     lazy = false,

@@ -62,6 +62,27 @@ This document tracks all custom keybindings across the development environment.
 - `Ctrl+k` - Move to previous selection
 - `q` - Close picker
 
+### Git (vim-fugitive)
+**Custom Keybindings:**
+- `<leader>gs` - Git status
+- `<leader>gb` - Git blame
+- `<leader>gd` - Git diff
+- `<leader>gl` - Git log
+- `<leader>gp` - Git push
+
+**Git Status Window (`:Git`):**
+- `s` - Stage file
+- `u` - Unstage file
+- `=` - Toggle inline diff
+- `dd` - Open diff in horizontal split
+- `dv` - Open diff in vertical split
+- `i` - Show/hide inline patch
+- `cc` - Create commit
+- `Enter` - Open file
+- `o` - Open in horizontal split
+- `O` - Open in new tab
+- `g?` - Show all keybindings
+
 ### Other
 - `<leader>p` - Print full path of current file
 
