@@ -266,28 +266,7 @@ return {
       {
         "<leader>fd",
         function()
-          require("telescope.builtin").find_files({
-            cwd = git.get_workspace_root(),
-            find_command = { "find", ".", "-type", "d", "-not", "-path", "*/.*" },
-            prompt_title = "Find Directory",
-            attach_mappings = function(prompt_bufnr, map)
-              local actions = require("telescope.actions")
-              local action_state = require("telescope.actions.state")
-              actions.select_default:replace(function()
-                actions.close(prompt_bufnr)
-                local selection = action_state.get_selected_entry()
-                if selection then
-                  local dir = selection[1]
-                  if dir:sub(1, 2) == "./" then
-                    dir = dir:sub(3)
-                  end
-                  local full_path = git.get_workspace_root() .. "/" .. dir
-                  vim.cmd("edit " .. vim.fn.fnameescape(full_path))
-                end
-              end)
-              return true
-            end,
-          })
+          require("utils.telescope").find_directory()
         end,
         desc = "Find directory",
       },

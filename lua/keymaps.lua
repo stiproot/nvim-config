@@ -10,6 +10,13 @@ map("n", "<Down>", ":resize -1<CR>")
 map("n", "<S-l>", ":bn<CR>")
 map("n", "<S-h>", ":bp<CR>")
 
+-- Tab navigation
+map("n", "<leader>tn", ":tabnew<CR>", { desc = "New tab" })
+map("n", "<leader>tc", ":tabclose<CR>", { desc = "Close tab" })
+map("n", "<leader>to", ":tabonly<CR>", { desc = "Close other tabs" })
+map("n", "]t", ":tabnext<CR>", { desc = "Next tab" })
+map("n", "[t", ":tabprev<CR>", { desc = "Previous tab" })
+
 -- Paste over currently selected text without yanking it
 map("v", "p", '"_dp')
 

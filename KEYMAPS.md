@@ -14,6 +14,13 @@ This document tracks all custom keybindings across the development environment.
 - `Shift+h` - Previous buffer
 - `Shift+l` - Next buffer
 
+### Tab Navigation
+- `<leader>tn` - New tab
+- `<leader>tc` - Close tab
+- `<leader>to` - Close other tabs
+- `]t` - Next tab
+- `[t` - Previous tab
+
 ### Window Resizing
 - `Left Arrow` - Decrease vertical width
 - `Right Arrow` - Increase vertical width
