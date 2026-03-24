@@ -48,7 +48,28 @@ map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 -- map("n", "<leader>ts", ":lua require('neotest').summary.toggle()<CR>")
 -- map('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename symbol" })
 
-map("n", "<leader>p", "<C-r>=expand('%:p')<CR>")
+-- Path utilities
+map("n", "<leader>p", function()
+  print(vim.fn.expand('%:p'))
+end, { desc = "Show full path" })
+
+map("n", "<leader>yp", function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  print('Copied: ' .. path)
+end, { desc = "Copy full path to clipboard" })
+
+map("n", "<leader>yr", function()
+  local path = vim.fn.expand('%')
+  vim.fn.setreg('+', path)
+  print('Copied: ' .. path)
+end, { desc = "Copy relative path to clipboard" })
+
+map("n", "<leader>cd", function()
+  local dir = vim.fn.expand('%:p:h')
+  vim.cmd('lcd ' .. vim.fn.fnameescape(dir))
+  print('lcd: ' .. dir)
+end, { desc = "Set lcd to buffer directory" })
 
 -- Git keybindings (vim-fugitive)
 map("n", "<leader>gs", ":Git<CR>", { desc = "Git status" })
