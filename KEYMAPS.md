@@ -53,8 +53,22 @@ This document tracks all custom keybindings across the development environment.
 - `]d` - Next diagnostic
 - `<leader>e` - Show diagnostic float
 
-### Telescope (when picker is open)
-**Insert mode:**
+### Telescope
+
+**Launching pickers:**
+- `<leader>ff` - Find files (from pwd, respects :lcd)
+- `<leader>fg` - Live grep (from pwd, respects :lcd)
+- `<leader>fF` - Find files (from git workspace root)
+- `<leader>fG` - Live grep (from git workspace root)
+- `<leader>fd` - Find directory
+- `<leader>fr` - Recent files
+- `<leader>fb` - Search current buffer
+- `<leader>fh` - Help tags
+- `<leader>?` - Buffer local keymaps (which-key)
+
+**When picker is open:**
+
+*Insert mode:*
 - `Ctrl+j` - Move to next selection
 - `Ctrl+k` - Move to previous selection
 - `Ctrl+n` - Move to next selection
@@ -62,7 +76,7 @@ This document tracks all custom keybindings across the development environment.
 - `Ctrl+q` - Send to quickfix list
 - `Esc` - Close picker
 
-**Normal mode:**
+*Normal mode:*
 - `j` - Move to next selection
 - `k` - Move to previous selection
 - `Ctrl+j` - Move to next selection
@@ -90,8 +104,16 @@ This document tracks all custom keybindings across the development environment.
 - `O` - Open in new tab
 - `g?` - Show all keybindings
 
-### Other
-- `<leader>p` - Print full path of current file
+### Path Utilities
+- `<leader>p` - Show full path of current file
+- `<leader>yp` - Copy full path to clipboard
+- `<leader>yr` - Copy relative path to clipboard
+
+### Working Directory Management
+- `<leader>cd` - Set lcd to buffer directory
+- `<leader>cD` - Set lcd to git workspace root
+- `<leader>cT` - Set tcd to git workspace root
+- `<leader>ce` - Edit lcd command (pre-filled with git root path)
 
 ---
 

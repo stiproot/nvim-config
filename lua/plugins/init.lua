@@ -88,7 +88,21 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    opts = {},
+    config = function()
+      local wk = require("which-key")
+      wk.setup({
+        preset = "modern",
+      })
+
+      -- Add group labels for better organization
+      wk.add({
+        { "<leader>f", group = "Find (Telescope)" },
+        { "<leader>g", group = "Git" },
+        { "<leader>c", group = "Change directory / Code" },
+        { "<leader>t", group = "Tabs" },
+        { "<leader>y", group = "Yank path" },
+      })
+    end,
     keys = {
       {
         "<leader>?",
@@ -177,20 +191,44 @@ return {
       {
         "<leader>ff",
         function()
+          -- Find files from current window's working directory (respects :lcd)
+          local cwd = vim.fn.getcwd()
+          if git.is_git_repo() then
+            require("telescope.builtin").git_files({ cwd = cwd })
+          else
+            require("telescope.builtin").find_files({ cwd = cwd })
+          end
+        end,
+        desc = "Find files (from pwd)",
+      },
+      {
+        "<leader>fg",
+        function()
+          -- Live grep from current window's working directory (respects :lcd)
+          local cwd = vim.fn.getcwd()
+          require("telescope.builtin").live_grep({ cwd = cwd })
+        end,
+        desc = "Live grep (from pwd)",
+      },
+      {
+        "<leader>fF",
+        function()
+          -- Find files from git workspace root (Global)
           if git.is_git_repo() then
             require("telescope.builtin").git_files({ cwd = git.get_workspace_root() })
           else
             require("telescope.builtin").find_files({ cwd = git.get_workspace_root() })
           end
         end,
-        desc = "Find files",
+        desc = "Find files (from git root)",
       },
       {
-        "<leader>fg",
+        "<leader>fG",
         function()
+          -- Live grep from git workspace root (Global)
           require("telescope.builtin").live_grep({ cwd = git.get_workspace_root() })
         end,
-        desc = "Live grep",
+        desc = "Live grep (from git root)",
       },
       {
         "<leader>fr",
@@ -266,9 +304,11 @@ return {
       {
         "<leader>fd",
         function()
-          require("utils.telescope").find_directory()
+          -- Find directory from current window's working directory (respects :lcd)
+          local cwd = vim.fn.getcwd()
+          require("utils.telescope").find_directory({ cwd = cwd })
         end,
-        desc = "Find directory",
+        desc = "Find directory (from pwd)",
       },
     },
     config = function()

@@ -71,6 +71,28 @@ map("n", "<leader>cd", function()
   print('lcd: ' .. dir)
 end, { desc = "Set lcd to buffer directory" })
 
+-- Working directory management
+map("n", "<leader>cT", function()
+  local git = require("utils.git")
+  local dir = git.get_workspace_root()
+  vim.cmd('tcd ' .. vim.fn.fnameescape(dir))
+  print('tcd: ' .. dir)
+end, { desc = "Set tcd to git root" })
+
+map("n", "<leader>cD", function()
+  local git = require("utils.git")
+  local dir = git.get_workspace_root()
+  vim.cmd('lcd ' .. vim.fn.fnameescape(dir))
+  print('lcd: ' .. dir)
+end, { desc = "Set lcd to git root" })
+
+map("n", "<leader>ce", function()
+  local git = require("utils.git")
+  local dir = git.get_workspace_root()
+  -- Populate command line with :lcd but don't execute (allows editing)
+  vim.api.nvim_feedkeys(':lcd ' .. vim.fn.fnameescape(dir), 'n', false)
+end, { desc = "Edit lcd command (pre-filled with git root)" })
+
 -- Git keybindings (vim-fugitive)
 map("n", "<leader>gs", ":Git<CR>", { desc = "Git status" })
 map("n", "<leader>gb", ":Git blame<CR>", { desc = "Git blame" })
