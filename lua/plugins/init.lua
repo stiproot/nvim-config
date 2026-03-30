@@ -47,6 +47,178 @@ return {
     cmd = { "Git", "G", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse" },
   },
 
+  -- GitHub integration - PR comments, issues, reviews
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    cmd = "Octo",
+    config = function()
+      require("octo").setup({
+        use_local_fs = false,                -- Use working directory or remote files
+        enable_builtin = false,              -- Don't override vim.ui.select/input
+        default_remote = {"upstream", "origin"},
+        default_merge_method = "squash",     -- Valid values: merge, rebase, squash
+        ssh_aliases = {
+          ["github.com-work"] = "github.com" -- Map SSH alias to actual GitHub domain
+        },
+        picker = "telescope",
+        picker_config = {
+          use_emojis = true,                 -- Show emoji reactions in picker
+        },
+        comment_icon = "▎",                  -- Comment marker
+        outdated_icon = "󰅒 ",               -- Outdated comment marker
+        resolved_icon = " ",                -- Resolved thread marker
+        reaction_viewer_hint_icon = " ",    -- Reaction hint
+        user_icon = " ",                    -- User icon
+        timeline_marker = " ",              -- Timeline marker
+        timeline_indent = 2,                 -- Timeline indent (number, not string)
+        right_bubble_delimiter = "",        -- Bubble delimiters for comments
+        left_bubble_delimiter = "",
+        github_hostname = "",                -- For GitHub Enterprise, leave empty for github.com
+        snippet_context_lines = 4,           -- Lines of context for code snippets
+        gh_env = {},                         -- Extra env vars for 'gh' CLI
+        timeout = 5000,                      -- HTTP timeout
+        ui = {
+          use_signcolumn = true,             -- Show signs for comments
+        },
+        issues = {
+          order_by = {
+            field = "CREATED_AT",
+            direction = "DESC"
+          },
+        },
+        pull_requests = {
+          order_by = {
+            field = "CREATED_AT",
+            direction = "DESC"
+          },
+          always_select_remote_on_create = false,
+        },
+        file_panel = {
+          size = 10,                         -- File panel height (% or lines)
+          use_icons = true,
+        },
+        mappings = {
+          -- These are the default keymaps - you can customize in keymaps.lua if needed
+          issue = {
+            close_issue = { lhs = "<space>ic", desc = "close issue" },
+            reopen_issue = { lhs = "<space>io", desc = "reopen issue" },
+            list_issues = { lhs = "<space>il", desc = "list open issues" },
+            reload = { lhs = "<C-r>", desc = "reload issue" },
+            open_in_browser = { lhs = "<C-b>", desc = "open issue in browser" },
+            copy_url = { lhs = "<C-y>", desc = "copy url to clipboard" },
+            add_assignee = { lhs = "<space>aa", desc = "add assignee" },
+            remove_assignee = { lhs = "<space>ad", desc = "remove assignee" },
+            create_label = { lhs = "<space>lc", desc = "create label" },
+            add_label = { lhs = "<space>la", desc = "add label" },
+            remove_label = { lhs = "<space>ld", desc = "remove label" },
+            goto_issue = { lhs = "<space>gi", desc = "navigate to issue" },
+            add_comment = { lhs = "<space>ca", desc = "add comment" },
+            delete_comment = { lhs = "<space>cd", desc = "delete comment" },
+            next_comment = { lhs = "]c", desc = "next comment" },
+            prev_comment = { lhs = "[c", desc = "prev comment" },
+            react_hooray = { lhs = "<space>rp", desc = "react with 🎉" },
+            react_heart = { lhs = "<space>rh", desc = "react with ❤️" },
+            react_eyes = { lhs = "<space>re", desc = "react with 👀" },
+            react_thumbs_up = { lhs = "<space>r+", desc = "react with 👍" },
+            react_thumbs_down = { lhs = "<space>r-", desc = "react with 👎" },
+            react_rocket = { lhs = "<space>rr", desc = "react with 🚀" },
+            react_laugh = { lhs = "<space>rl", desc = "react with 😄" },
+            react_confused = { lhs = "<space>rc", desc = "react with 😕" },
+          },
+          pull_request = {
+            checkout_pr = { lhs = "<space>po", desc = "checkout PR" },
+            merge_pr = { lhs = "<space>pm", desc = "merge PR" },
+            list_commits = { lhs = "<space>pc", desc = "list PR commits" },
+            list_changed_files = { lhs = "<space>pf", desc = "list PR changed files" },
+            show_pr_diff = { lhs = "<space>pd", desc = "show PR diff" },
+            add_reviewer = { lhs = "<space>va", desc = "add reviewer" },
+            remove_reviewer = { lhs = "<space>vd", desc = "remove reviewer" },
+            close_issue = { lhs = "<space>ic", desc = "close PR" },
+            reopen_issue = { lhs = "<space>io", desc = "reopen PR" },
+            list_issues = { lhs = "<space>il", desc = "list open issues" },
+            reload = { lhs = "<C-r>", desc = "reload PR" },
+            open_in_browser = { lhs = "<C-b>", desc = "open PR in browser" },
+            copy_url = { lhs = "<C-y>", desc = "copy url to clipboard" },
+            goto_file = { lhs = "gf", desc = "go to file" },
+            add_assignee = { lhs = "<space>aa", desc = "add assignee" },
+            remove_assignee = { lhs = "<space>ad", desc = "remove assignee" },
+            create_label = { lhs = "<space>lc", desc = "create label" },
+            add_label = { lhs = "<space>la", desc = "add label" },
+            remove_label = { lhs = "<space>ld", desc = "remove label" },
+            goto_issue = { lhs = "<space>gi", desc = "navigate to issue" },
+            add_comment = { lhs = "<space>ca", desc = "add comment" },
+            delete_comment = { lhs = "<space>cd", desc = "delete comment" },
+            next_comment = { lhs = "]c", desc = "next comment" },
+            prev_comment = { lhs = "[c", desc = "prev comment" },
+            react_hooray = { lhs = "<space>rp", desc = "react with 🎉" },
+            react_heart = { lhs = "<space>rh", desc = "react with ❤️" },
+            react_eyes = { lhs = "<space>re", desc = "react with 👀" },
+            react_thumbs_up = { lhs = "<space>r+", desc = "react with 👍" },
+            react_thumbs_down = { lhs = "<space>r-", desc = "react with 👎" },
+            react_rocket = { lhs = "<space>rr", desc = "react with 🚀" },
+            react_laugh = { lhs = "<space>rl", desc = "react with 😄" },
+            react_confused = { lhs = "<space>rc", desc = "react with 😕" },
+          },
+          review_thread = {
+            goto_issue = { lhs = "<space>gi", desc = "navigate to issue" },
+            add_comment = { lhs = "<space>ca", desc = "add comment" },
+            add_suggestion = { lhs = "<space>sa", desc = "add suggestion" },
+            delete_comment = { lhs = "<space>cd", desc = "delete comment" },
+            next_comment = { lhs = "]c", desc = "next comment" },
+            prev_comment = { lhs = "[c", desc = "prev comment" },
+            select_next_entry = { lhs = "]q", desc = "next entry" },
+            select_prev_entry = { lhs = "[q", desc = "prev entry" },
+            close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
+            react_hooray = { lhs = "<space>rp", desc = "react with 🎉" },
+            react_heart = { lhs = "<space>rh", desc = "react with ❤️" },
+            react_eyes = { lhs = "<space>re", desc = "react with 👀" },
+            react_thumbs_up = { lhs = "<space>r+", desc = "react with 👍" },
+            react_thumbs_down = { lhs = "<space>r-", desc = "react with 👎" },
+            react_rocket = { lhs = "<space>rr", desc = "react with 🚀" },
+            react_laugh = { lhs = "<space>rl", desc = "react with 😄" },
+            react_confused = { lhs = "<space>rc", desc = "react with 😕" },
+          },
+          submit_win = {
+            approve_review = { lhs = "<C-a>", desc = "approve review" },
+            comment_review = { lhs = "<C-m>", desc = "comment review" },
+            request_changes = { lhs = "<C-r>", desc = "request changes" },
+            close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
+          },
+          review_diff = {
+            add_review_comment = { lhs = "<space>ca", desc = "add review comment" },
+            add_review_suggestion = { lhs = "<space>sa", desc = "add review suggestion" },
+            focus_files = { lhs = "<leader>e", desc = "focus files panel" },
+            toggle_files = { lhs = "<leader>b", desc = "toggle files panel" },
+            next_thread = { lhs = "]t", desc = "next thread" },
+            prev_thread = { lhs = "[t", desc = "prev thread" },
+            select_next_entry = { lhs = "]q", desc = "next entry" },
+            select_prev_entry = { lhs = "[q", desc = "prev entry" },
+            close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
+            toggle_viewed = { lhs = "<leader><space>", desc = "toggle viewer viewed state" },
+            goto_file = { lhs = "gf", desc = "go to file" },
+          },
+          file_panel = {
+            next_entry = { lhs = "j", desc = "next entry" },
+            prev_entry = { lhs = "k", desc = "prev entry" },
+            select_entry = { lhs = "<cr>", desc = "select entry" },
+            refresh_files = { lhs = "R", desc = "refresh files" },
+            focus_files = { lhs = "<leader>e", desc = "focus files panel" },
+            toggle_files = { lhs = "<leader>b", desc = "toggle files panel" },
+            select_next_entry = { lhs = "]q", desc = "next entry" },
+            select_prev_entry = { lhs = "[q", desc = "prev entry" },
+            close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
+            toggle_viewed = { lhs = "<leader><space>", desc = "toggle viewer viewed state" },
+          },
+        },
+      })
+    end,
+  },
+
   {
     "greggh/claude-code.nvim",
     lazy = false,
@@ -117,6 +289,7 @@ return {
   {
     "HiPhish/rainbow-delimiters.nvim",
     event = "VeryLazy",
+    submodules = false,  -- Skip submodules to avoid "Could not access submodule 'test/bin'" error
     config = function()
       -- Load rainbow delimiters with a better strategy than the default
       local rainbow_delimiters = require("rainbow-delimiters")
@@ -309,6 +482,14 @@ return {
           require("utils.telescope").find_directory({ cwd = cwd })
         end,
         desc = "Find directory (from pwd)",
+      },
+      {
+        "<leader>fD",
+        function()
+          -- Find directory from git workspace root (Global)
+          require("utils.telescope").find_directory({ cwd = git.get_workspace_root() })
+        end,
+        desc = "Find directory (from git root)",
       },
     },
     config = function()

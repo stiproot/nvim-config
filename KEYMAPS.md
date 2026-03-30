@@ -58,9 +58,10 @@ This document tracks all custom keybindings across the development environment.
 **Launching pickers:**
 - `<leader>ff` - Find files (from pwd, respects :lcd)
 - `<leader>fg` - Live grep (from pwd, respects :lcd)
+- `<leader>fd` - Find directory (from pwd, respects :lcd)
 - `<leader>fF` - Find files (from git workspace root)
 - `<leader>fG` - Live grep (from git workspace root)
-- `<leader>fd` - Find directory
+- `<leader>fD` - Find directory (from git workspace root)
 - `<leader>fr` - Recent files
 - `<leader>fb` - Search current buffer
 - `<leader>fh` - Help tags
@@ -103,6 +104,76 @@ This document tracks all custom keybindings across the development environment.
 - `o` - Open in horizontal split
 - `O` - Open in new tab
 - `g?` - Show all keybindings
+
+### GitHub (octo.nvim)
+
+**Opening PRs/Issues:**
+- `:Octo pr list` - List pull requests
+- `:Octo pr search` - Search pull requests
+- `:Octo issue list` - List issues
+- `:Octo issue search` - Search issues
+
+**When viewing a PR/Issue:**
+
+*Navigation:*
+- `]c` - Next comment
+- `[c` - Previous comment
+- `]t` - Next thread (in review diff)
+- `[t` - Previous thread (in review diff)
+- `]q` - Next entry
+- `[q` - Previous entry
+- `gf` - Go to file
+
+*Comments:*
+- `<space>ca` - Add comment
+- `<space>cd` - Delete comment
+- `<space>sa` - Add suggestion (code review)
+
+*Reactions (emoji):*
+- `<space>r+` - React with 👍
+- `<space>r-` - React with 👎
+- `<space>rh` - React with ❤️
+- `<space>rp` - React with 🎉
+- `<space>rr` - React with 🚀
+- `<space>re` - React with 👀
+- `<space>rl` - React with 😄
+- `<space>rc` - React with 😕
+
+*PR Management:*
+- `<space>po` - Checkout PR locally
+- `<space>pm` - Merge PR
+- `<space>pc` - List PR commits
+- `<space>pf` - List PR changed files
+- `<space>pd` - Show PR diff
+- `<space>va` - Add reviewer
+- `<space>vd` - Remove reviewer
+
+*Issue/PR Actions:*
+- `<space>ic` - Close issue/PR
+- `<space>io` - Reopen issue/PR
+- `<space>il` - List open issues
+- `<space>aa` - Add assignee
+- `<space>ad` - Remove assignee
+- `<space>la` - Add label
+- `<space>ld` - Remove label
+- `<space>lc` - Create label
+- `<space>gi` - Navigate to issue
+
+*Other:*
+- `<C-r>` - Reload PR/issue
+- `<C-b>` - Open in browser
+- `<C-y>` - Copy URL to clipboard
+
+**Review Diff Panel:**
+- `<leader>e` - Focus files panel
+- `<leader>b` - Toggle files panel
+- `<leader><space>` - Toggle file viewed state
+
+**Submit Review:**
+- `<C-a>` - Approve review
+- `<C-m>` - Comment review
+- `<C-r>` - Request changes
+- `<C-c>` - Close review tab
 
 ### Path Utilities
 - `<leader>p` - Show full path of current file
