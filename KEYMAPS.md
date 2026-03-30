@@ -32,6 +32,10 @@ This document tracks all custom keybindings across the development environment.
 - `<` - Indent left (stays in visual mode)
 - `>` - Indent right (stays in visual mode)
 
+### File Navigation (netrw)
+- `-` - Move up directory (vim-vinegar)
+- `<leader>-` - Open netrw at git workspace root
+
 ### LSP (when LSP is attached)
 **Navigation:**
 - `gd` - Go to definition
@@ -49,8 +53,8 @@ This document tracks all custom keybindings across the development environment.
 - `<leader>f` - Format document
 
 **Diagnostics:**
-- `[d` - Previous diagnostic
-- `]d` - Next diagnostic
+- `[e` - Previous diagnostic
+- `]e` - Next diagnostic
 - `<leader>e` - Show diagnostic float
 
 ### Telescope

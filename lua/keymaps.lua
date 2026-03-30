@@ -93,6 +93,13 @@ map("n", "<leader>ce", function()
   vim.api.nvim_feedkeys(':lcd ' .. vim.fn.fnameescape(dir), 'n', false)
 end, { desc = "Edit lcd command (pre-filled with git root)" })
 
+-- File Navigation
+map("n", "<leader>-", function()
+  local git = require("utils.git")
+  local dir = git.get_workspace_root()
+  vim.cmd('edit ' .. vim.fn.fnameescape(dir))
+end, { desc = "Open netrw at git root" })
+
 -- Git keybindings (vim-fugitive)
 map("n", "<leader>gs", ":Git<CR>", { desc = "Git status" })
 map("n", "<leader>gb", ":Git blame<CR>", { desc = "Git blame" })
@@ -124,8 +131,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, vim.tbl_extend("force", opts, { desc = "Format document" }))
 
     -- Diagnostics
-    map("n", "[d", vim.diagnostic.goto_prev, vim.tbl_extend("force", opts, { desc = "Previous diagnostic" }))
-    map("n", "]d", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Next diagnostic" }))
+    map("n", "[e", vim.diagnostic.goto_prev, vim.tbl_extend("force", opts, { desc = "Previous diagnostic" }))
+    map("n", "]e", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Next diagnostic" }))
     map("n", "<leader>e", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Show diagnostic" }))
   end,
 })
