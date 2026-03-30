@@ -32,6 +32,15 @@ This document tracks all custom keybindings across the development environment.
 - `<` - Indent left (stays in visual mode)
 - `>` - Indent right (stays in visual mode)
 
+### Code Folding
+- `za` - Toggle fold under cursor
+- `zc` - Close fold under cursor
+- `zo` - Open fold under cursor
+- `zR` - Open all folds in file
+- `zM` - Close all folds in file
+- `zj` - Move to next fold
+- `zk` - Move to previous fold
+
 ### File Navigation (netrw)
 - `-` - Move up directory (vim-vinegar)
 - `<leader>-` - Open netrw at git workspace root

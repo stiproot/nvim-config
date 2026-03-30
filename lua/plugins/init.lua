@@ -34,6 +34,12 @@ return {
         "typescript", "javascript", "tsx", "json",
         "markdown", "markdown_inline"
   		},
+      highlight = {
+        enable = true,
+      },
+      indent = {
+        enable = true,
+      },
   	},
   },
 
