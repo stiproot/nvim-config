@@ -609,6 +609,19 @@ return {
     end,
   },
 
+  {
+    dir = "/Users/simon.stipcich/code/repo/code-playground.nvim",
+    name = "code-playground",
+    lazy = false,
+    config = function()
+      require("code-playground").setup({
+        split_direction = "vsplit",  -- Vertical split with output on the right
+        auto_change_cwd = false,     -- Don't change working directory automatically
+        animation = "wave"           -- Loading animation style
+      })
+    end,
+  },
+
 }
 
 -- Add these plugins to your return table in lua/plugins/init.lua
