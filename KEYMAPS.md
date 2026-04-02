@@ -188,8 +188,21 @@ This document tracks all custom keybindings across the development environment.
 - `<C-r>` - Request changes
 - `<C-c>` - Close review tab
 
+### TypeScript Transpilation (code-playground.nvim)
+- `<leader>p` - Transpile current TypeScript file (no bundle, shows only current file)
+- `<leader>P` - Transpile + bundle current TypeScript file (shows full bundled app)
+- `<leader>r` - Re-transpile manually (when viewing a TypeScript file)
+
+**Note:** When in a TypeScript file, pressing `<leader>p` will:
+1. Transpile the file using Bun
+2. Show JavaScript output in split window
+3. Auto-update on save
+4. Use `--no-bundle` flag (preserves imports)
+
+Pressing `<leader>P` will bundle all dependencies together.
+
 ### Path Utilities
-- `<leader>p` - Show full path of current file
+- `<leader>fp` - Show full path of current file
 - `<leader>yp` - Copy full path to clipboard
 - `<leader>yr` - Copy relative path to clipboard
 
@@ -402,6 +415,12 @@ Zellij's locked mode disables all Zellij keybindings, allowing applications like
 ## Conflicts & Notes
 
 ### Resolved Conflicts
+1. **`<leader>p` - TypeScript Transpilation vs Path Utilities** ✅ RESOLVED
+   - **Previous conflict**: Both features used `<leader>p`
+   - **Resolution**: Moved path utilities to `<leader>fp` (file path)
+   - **Current mapping**:
+     - `<leader>p` → TypeScript transpilation (code-playground.nvim)
+     - `<leader>fp` → Show full path of current file
 1. **Zellij `Ctrl+h`** - Disabled to allow Neovim window navigation
 2. **Yabai `Alt+hjkl`** - Conflicts with initial Neovim attempt, switched Neovim to `Ctrl+hjkl`
 3. **Zellij Locked Mode** - Configured with zellij-autolock plugin to automatically enable when Neovim is running, passing all keys through to Neovim

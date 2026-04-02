@@ -49,7 +49,7 @@ map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 -- map('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 -- Path utilities
-map("n", "<leader>p", function()
+map("n", "<leader>fp", function()
   print(vim.fn.expand('%:p'))
 end, { desc = "Show full path" })
 
